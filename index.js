@@ -13,7 +13,7 @@ main();
 async function main() {
 	try {
 		connectToMyMongoDB();
-		initDB()
+		await initDB()
 		await mongoose.disconnect();
 	}
 	catch (err) {
@@ -30,7 +30,7 @@ async function initDB() {
 		insertModel('david', 65),
 	]);
 
-	console.log('actors inserted');
+	console.log('models inserted');
 }
 
 async function insertModel(name, age) {
