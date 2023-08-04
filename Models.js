@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const singerSchema = mongoose.Schema(
+const modelSchema = mongoose.Schema(
     {
         name: String,
         age: Number
     }
 );
 
-module.exports = mongoose.model('Singer', singerSchema);
+module.exports = mongoose.model('Models', modelSchema);

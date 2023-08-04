@@ -5,11 +5,21 @@ const cors = require('cors')
 const app = express();
 const port = 5000;
 const mongoose = require('mongoose');
-const Singer = require('./Singer')
+const Models = require('./Models')
+const { connectToMyMongoDB } = require('./db.js');
 
+main();
 
-const url = 'mongodb+srv://yanivamz:macabi11@cluster0.aidqfhh.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(url);
+async function main() {
+	try {
+		connectToMyMongoDB();
+		await initDB();
+		await mongoose.disconnect();
+	}
+	catch (err) {
+		console.error(err);
+	}
+}
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
@@ -23,5 +33,5 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-const singers = new Singer ({ name: 'david', age: 25});
-singers.save().then(() => console.log ('singer added..'));
+const models = new Models ({ name: 'yaniv', age: 33});
+models.save().then(() => console.log ('model added..'));
