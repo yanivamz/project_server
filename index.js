@@ -13,7 +13,6 @@ main();
 async function main() {
 	try {
 		connectToMyMongoDB();
-		await initDB();
 		await mongoose.disconnect();
 	}
 	catch (err) {
