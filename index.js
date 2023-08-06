@@ -47,6 +47,8 @@ app.use(cors());
 
 app.get('/test', (req, res) => {
   res.send(process.env.NISIM);
+  main();
+
 });
 
 // Start the server
