@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const Models = require('./Models')
 const { connectToMyMongoDB } = require('./db.js');
 
-main();
+//main();
 
 async function main() {
 	try {
