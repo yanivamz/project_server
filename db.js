@@ -13,7 +13,11 @@ const mongoUrl = [
 ].join('');
 
 function connectToMyMongoDB() {
-	mongoose.connect(mongoUrl);
+	mongoose.connect(mongoUrl, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		bufferTimeoutMS: 30000, // Increase the timeout value
+	  });
 }
 
 module.exports = { connectToMyMongoDB };
