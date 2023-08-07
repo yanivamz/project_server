@@ -7,7 +7,7 @@ const port = 5000;
 const Models = require('./Models')
 const { connectToMyMongoDB } = require('./db.js');
 
-//connection();
+connection();
 
  async function connection() {
 	try {
