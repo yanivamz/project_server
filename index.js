@@ -9,6 +9,7 @@ const { connectToMyMongoDB } = require('./db.js');
 
 connection();
 
+
  async function connection() {
 	try {
 		await connectToMyMongoDB();
