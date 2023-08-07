@@ -7,7 +7,16 @@ const port = 5000;
 const Models = require('./Models')
 const { connectToMyMongoDB } = require('./db.js');
 
-connectToMyMongoDB();
+connection();
+
+ async function connection () {
+	try {
+		await connectToMyMongoDB();
+	}
+	catch (err) {
+		console.error(err);
+	}
+}
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
