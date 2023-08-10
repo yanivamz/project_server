@@ -4,8 +4,8 @@ const path = require('path');
 const cors = require('cors')
 const app = express();
 const port = 5000;
-const Models = require('./Models')
 const { connectToMyMongoDB } = require('./db.js');
+const User = require('./models/User.js');
 
 connection();
 
@@ -22,17 +22,10 @@ async function connection() {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-app.get('/models', async (req, res) => {
-	try {
-		const models = await Models.find();
-		res.json(models);
-	}
-	catch (err) {
-		console.error(err);
-		res.sendStatus(500);
-	}
-
-});
+app.use('/Users', require('./routes/usersRoute.js'));
+app.use('/products', require('./routes/productsRoute.js'))
+app.use('/Orders', require('./routes/ordersRoute.js'));
+app.use('/Categorys', require('./routes/categorysRoute.js'));
 
 app.get('/test', (req, res) => {
 	res.send(process.env.NISIM);
