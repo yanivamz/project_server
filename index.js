@@ -7,23 +7,25 @@ const port = 5000;
 const { connectToMyMongoDB } = require('./db.js');
 const User = require('./models/User.js');
 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
+
 connection();
 
 
-async function connection() {
+function connection() {
 	try {
-		await connectToMyMongoDB();
+		connectToMyMongoDB();
 	}
 	catch (err) {
 		console.error(err);
 	}
 }
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+
 
 app.use('/Users', require('./routes/usersRoute.js'));
-app.use('/products', require('./routes/productsRoute.js'))
+app.use('/products', require('./routes/productsRoute.js'));
 app.use('/Orders', require('./routes/ordersRoute.js'));
 app.use('/Categorys', require('./routes/categorysRoute.js'));
 
